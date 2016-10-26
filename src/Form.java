@@ -1,5 +1,9 @@
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -17,12 +21,19 @@ public class Form extends Application {
 		StackPane pane = new StackPane();
 		// Create a form title
 		Text title = new Text("Flying Club Form");
+		// Create the Image file
+		// TODO: DETECT IF THERE IS A PHOTO, IF THERE ISN'T, PUT SOMETHING IN AS DEFAULT
+		ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
+		// TODO: DETECT ASPECT RATIO OF IMAGE BEFORE SIZING AND SCALE PROPORTIONALLY
+		mainImage.setFitWidth(300);
+		mainImage.setFitHeight(200);
 		// Create a subtitle
 		Text subTitle = new Text("Join the Flying Club today!\n"
 							+"Fill out the form below:");
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
-		titleBox.getChildren().addAll(title, subTitle);
+		titleBox.getChildren().addAll(title, mainImage, subTitle);
+		
 		
 		
 		
