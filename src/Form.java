@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -17,8 +18,8 @@ public class Form extends Application {
 	}
 	
 	public void start(Stage primaryStage) {
-		// Create the initial StackPane
-		StackPane pane = new StackPane();
+		// Create the initial BorderPane
+		BorderPane formpane = new BorderPane();
 		// Create a form title
 		Text title = new Text("Flying Club Form");
 		// Create the Image file
@@ -39,10 +40,24 @@ public class Form extends Application {
 		
 		
 		
-		pane.getChildren().add(titleBox);
+		
+		
+		
+		
+		
+		// Create credits and copyright info text nodes
+		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
+		Text copyrightInfo = new Text("Copyright © 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
+		// Create a VBox to store the copyright and text info nodes
+		VBox footerBox = new VBox();
+		footerBox.getChildren().addAll(credits, copyrightInfo);
+		
+		
+		formpane.setTop(titleBox);
+		formpane.setBottom(footerBox);
 		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
-        primaryStage.setScene(new Scene(pane, 800, 600));
+        primaryStage.setScene(new Scene(formpane, 800, 600));
         primaryStage.show();
 	}
 	
