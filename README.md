@@ -1,6 +1,11 @@
 # MAD300-Java-Lab-10
 Group project for Java class.
 
+## Git Config Instructions
+Set name: `git config --global user.name` `<<<YOUR NAME HERE>>>`
+
+Set email: `git config --global user.email` `<<<YOUR EMAIL HERE>>>`
+
 ## Commiting Instructions
 First, we'll make sure we're up to date with the *staging* branch using the following command:
 `git pull` `staging`
