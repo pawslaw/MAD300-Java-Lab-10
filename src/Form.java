@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ public class Form extends Application {
 	public void start(Stage primaryStage) {
 		// Create the initial BorderPane
 		BorderPane formpane = new BorderPane();
+		/* TITLE */
 		// Create a form title
 		Text title = new Text("Flying Club Form");
 		// Create the Image file
@@ -36,35 +38,38 @@ public class Form extends Application {
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
 		titleBox.getChildren().addAll(title, mainImage, subTitle);
+		/* END OF TITLE */
 		
+		/* YEAR OF ENROLLMENT BUTTON */
 		// Create the text for the radio group
 		Text buttonGroupText = new Text("Select your current year of enrollment or if you are a faculty member:");
 		// Create new radio button group
 		ToggleGroup radioButtonGroup = new ToggleGroup();
 		// Create the radio buttons
-		RadioButton firstyearButton = new RadioButton("1st Year");
-		firstyearButton.setUserData("1st Year");
-		RadioButton secondyearButton = new RadioButton("2nd Year");
-		secondyearButton.setUserData("2nd Year");
-		RadioButton thirdyearButton = new RadioButton("3rd Year");
-		thirdyearButton.setUserData("3rd Year");
-		RadioButton facultyButton = new RadioButton("Faculty");
-		facultyButton.setUserData("Faculty");
+		ArrayList<RadioButton> buttons = new ArrayList<RadioButton>(4);
+		for (int i = 0; i < 3; i++) {buttons.add(new RadioButton("Year "+(i+1)));}
+		buttons.add(new RadioButton("Faculty"));
 		// Assign the buttons to the toggle group
-		firstyearButton.setToggleGroup(radioButtonGroup);
-		firstyearButton.setSelected(true);
-		secondyearButton.setToggleGroup(radioButtonGroup);
-		thirdyearButton.setToggleGroup(radioButtonGroup);
-		facultyButton.setToggleGroup(radioButtonGroup);
+		// Create HBox to store the buttons
+		HBox buttonBox = new HBox();
+		for (int i = 0; i < buttons.size(); i++) {
+			buttons.get(i).setToggleGroup(radioButtonGroup);
+			buttonBox.getChildren().add(buttons.get(i));
+		}
+		// Create a VBox to store the buttons and button heading
+		VBox headingWithButtons = new VBox();
+		// Add the button group to the VBox
+		headingWithButtons.getChildren().addAll(buttonGroupText, buttonBox);
+		/* END OF YEAR OF ENROLLMENT */
 		
 		
 		
 		
 		
-		
-		
-		
-		
+		//Create a VBox to store the form and submit buttons
+		VBox formBox = new VBox();
+		// Add the form nodes to the form box
+		formBox.getChildren().add(headingWithButtons);
 		
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
@@ -73,8 +78,8 @@ public class Form extends Application {
 		VBox footerBox = new VBox();
 		footerBox.getChildren().addAll(credits, copyrightInfo);
 		
-		
 		formpane.setTop(titleBox);
+		formpane.setCenter(formBox);
 		formpane.setBottom(footerBox);
 		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
