@@ -2,6 +2,8 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +37,25 @@ public class Form extends Application {
 		VBox titleBox = new VBox();
 		titleBox.getChildren().addAll(title, mainImage, subTitle);
 		
+		// Create the text for the radio group
+		Text buttonGroupText = new Text("Select your current year of enrollment or if you are a faculty member:");
+		// Create new radio button group
+		ToggleGroup radioButtonGroup = new ToggleGroup();
+		// Create the radio buttons
+		RadioButton firstyearButton = new RadioButton("1st Year");
+		firstyearButton.setUserData("1st Year");
+		RadioButton secondyearButton = new RadioButton("2nd Year");
+		secondyearButton.setUserData("2nd Year");
+		RadioButton thirdyearButton = new RadioButton("3rd Year");
+		thirdyearButton.setUserData("3rd Year");
+		RadioButton facultyButton = new RadioButton("Faculty");
+		facultyButton.setUserData("Faculty");
+		// Assign the buttons to the toggle group
+		firstyearButton.setToggleGroup(radioButtonGroup);
+		firstyearButton.setSelected(true);
+		secondyearButton.setToggleGroup(radioButtonGroup);
+		thirdyearButton.setToggleGroup(radioButtonGroup);
+		facultyButton.setToggleGroup(radioButtonGroup);
 		
 		
 		
