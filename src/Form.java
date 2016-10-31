@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,6 +41,10 @@ public class Form extends Application {
 		titleBox.getChildren().addAll(title, mainImage, subTitle);
 		/* END OF TITLE */
 		
+		
+		/* PERSONAL INFORMATION */
+		
+		
 		/* YEAR OF ENROLLMENT BUTTON */
 		// Create the text for the radio group
 		Text buttonGroupText = new Text("Select your current year of enrollment or if you are a faculty member:");
@@ -62,18 +67,34 @@ public class Form extends Application {
 		headingWithButtons.getChildren().addAll(buttonGroupText, buttonBox);
 		/* END OF YEAR OF ENROLLMENT */
 		
+		// Create the interests portion of the form
+		Text interestsText = new Text("Tell us some of your interests or hobbies:");
+		TextArea interestsArea = new TextArea();
+		interestsArea.setMaxSize(450, 100);
+		interestsArea.setEditable(true);
+		interestsArea.setWrapText(true);
+		VBox interestsBox = new VBox();
+		interestsBox.getChildren().addAll(interestsText, interestsArea);
 		
+		// Create the Why Are you Joining form
+		Text whyJoinText = new Text("Tell us why you would like to join the Flying Club:");
+		TextArea whyJoinArea = new TextArea();
+		whyJoinArea.setMaxSize(450, 100);
+		whyJoinArea.setEditable(true);
+		whyJoinArea.setWrapText(true);
+		VBox whyJoinBox = new VBox();
+		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
 		
 		
 		
 		//Create a VBox to store the form and submit buttons
 		VBox formBox = new VBox();
 		// Add the form nodes to the form box
-		formBox.getChildren().add(headingWithButtons);
+		formBox.getChildren().addAll(headingWithButtons,interestsBox,whyJoinBox);
 		
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
-		Text copyrightInfo = new Text("Copyright Â© 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
+		Text copyrightInfo = new Text("Copyright© 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
 		// Create a VBox to store the copyright and text info nodes
 		VBox footerBox = new VBox();
 		footerBox.getChildren().addAll(credits, copyrightInfo);
@@ -83,7 +104,7 @@ public class Form extends Application {
 		formpane.setBottom(footerBox);
 		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
-        primaryStage.setScene(new Scene(formpane, 800, 600));
+        primaryStage.setScene(new Scene(formpane, 800, 1000));
         primaryStage.show();
 	}
 	
