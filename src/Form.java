@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,9 +42,34 @@ public class Form extends Application {
 		titleBox.getChildren().addAll(title, mainImage, subTitle);
 		/* END OF TITLE */
 		
-		
 		/* PERSONAL INFORMATION */
-		
+		// Get the student's basic information
+		Text personalinfoText = new Text("Please enter your personal information:");
+		TextField firstName = new TextField();
+		TextField lastName = new TextField(); 
+		TextField studentNumber = new TextField(); 
+		TextField email = new TextField(); 
+		TextField phoneNumber = new TextField(); 
+		firstName.setPromptText("First Name");
+		firstName.setMaxWidth(200);
+		lastName.setPromptText("Last Name");
+		lastName.setMaxWidth(200);
+		studentNumber.setPromptText("Student #");
+		studentNumber.setMaxWidth(200);
+		// Get the student's contact information
+		Text contactText = new Text("Please enter your contact information (Information will be kept confidential):");
+		email.setPromptText("Prefered Email Address");
+		email.setMinWidth(300);
+		phoneNumber.setPromptText("Phone Number Ex: (555) 555-5555");
+		phoneNumber.setMinWidth(300);
+		// Create the boxes to store the sets of Texts and TextFields
+		HBox personalinfoRow1 = new HBox(); 
+		HBox personalinfoRow2 = new HBox();
+		personalinfoRow1.getChildren().addAll(firstName, lastName, studentNumber);
+		personalinfoRow2.getChildren().addAll(email, phoneNumber);
+		VBox personalinfoBox = new VBox();
+		personalinfoBox.getChildren().addAll(personalinfoText,personalinfoRow1,contactText,personalinfoRow2);
+		/* END OF PERSONAL INFORMATION */
 		
 		/* YEAR OF ENROLLMENT BUTTON */
 		// Create the text for the radio group
@@ -67,6 +93,7 @@ public class Form extends Application {
 		headingWithButtons.getChildren().addAll(buttonGroupText, buttonBox);
 		/* END OF YEAR OF ENROLLMENT */
 		
+		/* INTERESTS, HOBBIES, AND REASON TO JOIN */
 		// Create the interests portion of the form
 		Text interestsText = new Text("Tell us some of your interests or hobbies:");
 		TextArea interestsArea = new TextArea();
@@ -84,13 +111,13 @@ public class Form extends Application {
 		whyJoinArea.setWrapText(true);
 		VBox whyJoinBox = new VBox();
 		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
-		
+		/* END OF INTERESTS, HOBBIES, REASON */
 		
 		
 		//Create a VBox to store the form and submit buttons
 		VBox formBox = new VBox();
 		// Add the form nodes to the form box
-		formBox.getChildren().addAll(headingWithButtons,interestsBox,whyJoinBox);
+		formBox.getChildren().addAll(personalinfoBox,headingWithButtons,interestsBox,whyJoinBox);
 		
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
