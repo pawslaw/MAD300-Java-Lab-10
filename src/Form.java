@@ -2,7 +2,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,11 +16,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Form extends Application {
-
+	
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -114,10 +119,35 @@ public class Form extends Application {
 		/* END OF INTERESTS, HOBBIES, REASON */
 		
 		
-		//Create a VBox to store the form and submit buttons
+		
+		/* CLEAR AND SUBMIT BUTTONS */
+		Button clear = new Button("CLEAR");
+		Button submit = new Button("SUBMIT");
+		HBox submitBox = new HBox();
+		/**
+		 * 
+		 * Plays a sound when the user submits the form
+		 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+		 * @version 1.0
+		 * @param	EventHandler containing the handle method that creates the Media,
+		 * 			MediaPlayer and then plays the audio file for the user.
+		 * 
+		 */
+		submit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				Media media = new Media("file:./audio/submitsound.wav");
+				MediaPlayer soundplayer = new MediaPlayer(media);
+				soundplayer.play();
+			}
+		});
+		submitBox.getChildren().addAll(clear,submit);
+		/* END OF CLEAR AND SUBMIT BUTTONS */
+		
+		//Create a VBox to store the form and submit/clear buttons
 		VBox formBox = new VBox();
 		// Add the form nodes to the form box
-		formBox.getChildren().addAll(personalinfoBox,headingWithButtons,interestsBox,whyJoinBox);
+		formBox.getChildren().addAll(personalinfoBox,headingWithButtons,interestsBox,whyJoinBox,submitBox);
 		
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
