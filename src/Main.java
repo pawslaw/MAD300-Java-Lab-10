@@ -166,19 +166,40 @@ public class Main extends Application {
         		ArrayList<String> submissionArray = new ArrayList<String>();
         		String selectedButton = "";
         		for (int i = 0; i < buttons.size(); i++) if (buttons.get(i).isSelected()) selectedButton = buttons.get(i).getText();
-        		
+        		String selectedItem = "";
+        		if (list.getSelectionModel().getSelectedItem() == null) {
+        			selectedItem = "";
+        		} else {
+        			selectedItem = list.getSelectionModel().getSelectedItem();
+        		}
         		submissionArray.add(firstName.getText());
         		submissionArray.add(lastName.getText());
         		submissionArray.add(studentNumber.getText());
         		submissionArray.add(email.getText());
         		submissionArray.add(phoneNumber.getText());
         		submissionArray.add(selectedButton);
-        		submissionArray.add(list.getSelectionModel().getSelectedItem());
+        		submissionArray.add(selectedItem);
         		submissionArray.add(interestsArea.getText());
         		submissionArray.add(whyJoinArea.getText());
         		
         		OutputCSV out = new OutputCSV(submissionArray, ",", "output.csv");
         		out.writeArrayToFile();
+        		
+        		submissionArray.clear();
+        		
+        		firstName.setText("");
+        		lastName.setText("");
+        		studentNumber.setText("");
+        		email.setText("");
+        		phoneNumber.setText("");
+        		for (int i = 0; i < buttons.size(); i++) {
+        			if (buttons.get(i).isSelected()) {
+        				buttons.get(i).setSelected(false);
+        			}
+        		}
+        		list.getSelectionModel().clearSelection();
+        		interestsArea.setText("");
+        		whyJoinArea.setText("");
             }
         });
 		clear.setOnAction(new EventHandler<ActionEvent>() {
@@ -188,6 +209,20 @@ public class Main extends Application {
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
+        		
+        		firstName.setText("");
+        		lastName.setText("");
+        		studentNumber.setText("");
+        		email.setText("");
+        		phoneNumber.setText("");
+        		for (int i = 0; i < buttons.size(); i++) {
+        			if (buttons.get(i).isSelected()) {
+        				buttons.get(i).setSelected(false);
+        			}
+        		}
+        		list.getSelectionModel().clearSelection();
+        		interestsArea.setText("");
+        		whyJoinArea.setText("");
             }
         });
 		// clear.setOnMouseClicked(playSound());
@@ -214,5 +249,4 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene(formpane, 800, 900));
 		primaryStage.show();
 	}
-
 }
