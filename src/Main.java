@@ -1,9 +1,11 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -144,9 +146,13 @@ public class Main extends Application {
 		 * 
 		 * Plays a sound when the user submits the form
 		 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+		 * @author Brandon Brown <brandon.brown22@stclairconnect.ca>
 		 * @version 1.0
 		 * @param	EventHandler containing the handle method that creates the Media,
 		 * 			MediaPlayer and then plays the audio file for the user.
+		 * 
+		 * 			After the sound plays, the form is "submitted" and a new line is
+		 * 			added to the output file with the form's contents.
 		 * 
 		 */
 		submit.setOnAction(new EventHandler<ActionEvent>() {
@@ -156,6 +162,44 @@ public class Main extends Application {
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
+        		
+        		ArrayList<String> submissionArray = new ArrayList<String>();
+        		String selectedButton = "";
+        		for (int i = 0; i < buttons.size(); i++) if (buttons.get(i).isSelected()) selectedButton = buttons.get(i).getText();
+        		String selectedItem = "";
+        		if (list.getSelectionModel().getSelectedItem() == null) {
+        			selectedItem = "";
+        		} else {
+        			selectedItem = list.getSelectionModel().getSelectedItem();
+        		}
+        		submissionArray.add(firstName.getText());
+        		submissionArray.add(lastName.getText());
+        		submissionArray.add(studentNumber.getText());
+        		submissionArray.add(email.getText());
+        		submissionArray.add(phoneNumber.getText());
+        		submissionArray.add(selectedButton);
+        		submissionArray.add(selectedItem);
+        		submissionArray.add(interestsArea.getText());
+        		submissionArray.add(whyJoinArea.getText());
+        		
+        		OutputCSV out = new OutputCSV(submissionArray, ",", "output.csv");
+        		out.writeArrayToFile();
+        		
+        		submissionArray.clear();
+        		
+        		firstName.setText("");
+        		lastName.setText("");
+        		studentNumber.setText("");
+        		email.setText("");
+        		phoneNumber.setText("");
+        		for (int i = 0; i < buttons.size(); i++) {
+        			if (buttons.get(i).isSelected()) {
+        				buttons.get(i).setSelected(false);
+        			}
+        		}
+        		list.getSelectionModel().clearSelection();
+        		interestsArea.setText("");
+        		whyJoinArea.setText("");
             }
         });
 		clear.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,6 +209,20 @@ public class Main extends Application {
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
+        		
+        		firstName.setText("");
+        		lastName.setText("");
+        		studentNumber.setText("");
+        		email.setText("");
+        		phoneNumber.setText("");
+        		for (int i = 0; i < buttons.size(); i++) {
+        			if (buttons.get(i).isSelected()) {
+        				buttons.get(i).setSelected(false);
+        			}
+        		}
+        		list.getSelectionModel().clearSelection();
+        		interestsArea.setText("");
+        		whyJoinArea.setText("");
             }
         });
 		// clear.setOnMouseClicked(playSound());
@@ -178,7 +236,7 @@ public class Main extends Application {
 
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
-		Text copyrightInfo = new Text("Copyright© 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
+		Text copyrightInfo = new Text("Copyrightï¿½ 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
 		// Create a VBox to store the copyright and text info nodes
 		VBox footerBox = new VBox();
 		footerBox.getChildren().addAll(credits, copyrightInfo);
@@ -191,5 +249,4 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene(formpane, 800, 900));
 		primaryStage.show();
 	}
-
 }
