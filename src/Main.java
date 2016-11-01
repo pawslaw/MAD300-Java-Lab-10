@@ -152,6 +152,7 @@ public class Main extends Application {
 		submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	// TODO: swap in a different audio file unless team likes this one
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
@@ -160,6 +161,7 @@ public class Main extends Application {
 		clear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	// TODO: swap in a different audio file unless team likes this one
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
