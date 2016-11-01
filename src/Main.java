@@ -35,17 +35,21 @@ public class Main extends Application {
 		BorderPane formpane = new BorderPane();
 		// Create a form title
 		Text title = new Text("Flying Club Form");
-		// Create the Image file
-		// TODO: DETECT IF THERE IS A PHOTO, IF THERE ISN'T, PUT SOMETHING IN AS DEFAULT
-		ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
-		// TODO: DETECT ASPECT RATIO OF IMAGE BEFORE SIZING AND SCALE PROPORTIONALLY
-		mainImage.setFitWidth(300);
-		mainImage.setFitHeight(200);
 		// Create a subtitle
 		Text subTitle = new Text("Join the Flying Club today!\n" + "Fill out the form below:");
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
-		titleBox.getChildren().addAll(title, mainImage, subTitle);
+		// Check if there is an image file, if so create it, if not then add something in as a default value
+		if (new File("./images/skydiving_gregpalmer_flickr.jpg").isFile()) {
+			ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
+			mainImage.setPreserveRatio(true);
+			mainImage.setFitHeight(300);
+			mainImage.setFitWidth(400);
+			titleBox.getChildren().addAll(title, mainImage, subTitle);
+		} else {
+			Text mainImage = new Text("FLYING IS FUN!");
+			titleBox.getChildren().addAll(title, mainImage, subTitle);
+		}
 		/* END OF TITLE */
 
 		/* PERSONAL INFORMATION */
