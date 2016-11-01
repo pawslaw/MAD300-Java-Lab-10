@@ -146,9 +146,13 @@ public class Main extends Application {
 		 * 
 		 * Plays a sound when the user submits the form
 		 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+		 * @author Brandon Brown <brandon.brown22@stclairconnect.ca>
 		 * @version 1.0
 		 * @param	EventHandler containing the handle method that creates the Media,
 		 * 			MediaPlayer and then plays the audio file for the user.
+		 * 
+		 * 			After the sound plays, the form is "submitted" and a new line is
+		 * 			added to the output file with the form's contents.
 		 * 
 		 */
 		submit.setOnAction(new EventHandler<ActionEvent>() {
