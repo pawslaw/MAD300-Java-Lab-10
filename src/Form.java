@@ -6,12 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -93,10 +96,21 @@ public class Form extends Application {
 			buttonBox.getChildren().add(buttons.get(i));
 		}
 		// Create a VBox to store the buttons and button heading
-		VBox headingWithButtons = new VBox();
+		VBox studentYearBox = new VBox();
 		// Add the button group to the VBox
-		headingWithButtons.getChildren().addAll(buttonGroupText, buttonBox);
+		studentYearBox.getChildren().addAll(buttonGroupText, buttonBox);
 		/* END OF YEAR OF ENROLLMENT */
+		
+		/* EXPERIENCE SECTION */
+		Text listText = new Text("Select your amount of flying experience:");
+		ListView<String> list = new ListView<>();
+		list.getItems().addAll("Less than 1 year","1-2 years","3-4 years",
+				"5-6 years","7+ years");
+		list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		list.setMaxSize(150, 150);
+		VBox listBox = new VBox();
+		listBox.getChildren().addAll(listText, list);
+		/* END OF EXPERIENCE */
 		
 		/* INTERESTS, HOBBIES, AND REASON TO JOIN */
 		// Create the interests portion of the form
@@ -118,36 +132,21 @@ public class Form extends Application {
 		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
 		/* END OF INTERESTS, HOBBIES, REASON */
 		
-		
-		
 		/* CLEAR AND SUBMIT BUTTONS */
 		Button clear = new Button("CLEAR");
 		Button submit = new Button("SUBMIT");
 		HBox submitBox = new HBox();
-		/**
-		 * 
-		 * Plays a sound when the user submits the form
-		 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
-		 * @version 1.0
-		 * @param	EventHandler containing the handle method that creates the Media,
-		 * 			MediaPlayer and then plays the audio file for the user.
-		 * 
-		 */
-		submit.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				Media media = new Media("file:./audio/submitsound.wav");
-				MediaPlayer soundplayer = new MediaPlayer(media);
-				soundplayer.play();
-			}
-		});
+		
+		// TODO: Fix issue with MediaPlayer causing errors
+//		submit.setOnMouseClicked(playSound());
+//		clear.setOnMouseClicked(playSound());
 		submitBox.getChildren().addAll(clear,submit);
 		/* END OF CLEAR AND SUBMIT BUTTONS */
 		
 		//Create a VBox to store the form and submit/clear buttons
 		VBox formBox = new VBox();
 		// Add the form nodes to the form box
-		formBox.getChildren().addAll(personalinfoBox,headingWithButtons,interestsBox,whyJoinBox,submitBox);
+		formBox.getChildren().addAll(personalinfoBox,studentYearBox,listBox,interestsBox,whyJoinBox,submitBox);
 		
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
@@ -164,5 +163,21 @@ public class Form extends Application {
         primaryStage.setScene(new Scene(formpane, 800, 1000));
         primaryStage.show();
 	}
+	
+	/**
+	 * 
+	 * Plays a sound when the user submits the form
+	 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+	 * @version 1.0
+	 * @param	EventHandler containing the handle method that creates the Media,
+	 * 			MediaPlayer and then plays the audio file for the user.
+	 * 
+	 */
+//	public static EventHandler<MouseEvent> playSound() {
+//		Media media = new Media("file:./audio/submitsound.wav");
+//		MediaPlayer soundplayer = new MediaPlayer(media);
+//		soundplayer.play();
+//		return null;
+//	}
 	
 }
