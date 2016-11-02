@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -273,8 +274,12 @@ public class Main extends Application {
 		formpane.setCenter(formBox);
 		formpane.setBottom(footerBox);
 
+		Scene scene = new Scene(formpane, 800, 900);
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add("file:./stylesheets/styling.css");
+		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
-		primaryStage.setScene(new Scene(formpane, 800, 900));
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	
