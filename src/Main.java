@@ -2,6 +2,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +27,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Main extends Application {
 
@@ -210,6 +213,9 @@ public class Main extends Application {
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
         		
+        		
+        		
+        		
         		firstName.setText("");
         		lastName.setText("");
         		studentNumber.setText("");
@@ -249,4 +255,38 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene(formpane, 800, 900));
 		primaryStage.show();
 	}
+	
+	/**
+	 * 
+	 * Creates a FadeTransition and applies it to a TextArea, the in playes
+	 * the transition
+	 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+	 * @version 1.0
+	 * @param	TextArea to apply the FadeTransition to
+	 * 
+	 */
+	public static void textareaFade(TextArea textarea) {
+		FadeTransition ft = new FadeTransition(Duration.millis(3000), textarea);
+		ft.setFromValue(1.0);
+		ft.setToValue(0);
+		ft.setAutoReverse(false);
+		ft.play();
+	}
+	/**
+	 * 
+	 * Creates a FadeTransition and applies it to a TextField, the in playes
+	 * the transition
+	 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+	 * @version 1.0
+	 * @param	TextField to apply the FadeTransition to
+	 * 
+	 */
+	public static void textfieldFade(TextField textfield) {
+		FadeTransition ft = new FadeTransition(Duration.millis(3000), textfield);
+		ft.setFromValue(1.0);
+		ft.setToValue(0);
+		ft.setAutoReverse(false);
+		ft.play();
+	}
+	
 }
