@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -165,6 +166,16 @@ public class Main extends Application {
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
+        		//Fade out the form
+        		formFade(formpane);
+        		//Fade out the input fields
+        		textfieldFade(firstName);
+        		textfieldFade(lastName);
+        		textfieldFade(studentNumber);
+        		textfieldFade(email);
+        		textfieldFade(phoneNumber);
+        		textareaFade(interestsArea);
+        		textareaFade(whyJoinArea);
         		
         		ArrayList<String> submissionArray = new ArrayList<String>();
         		String selectedButton = "";
@@ -203,18 +214,26 @@ public class Main extends Application {
         		list.getSelectionModel().clearSelection();
         		interestsArea.setText("");
         		whyJoinArea.setText("");
+        		
             }
         });
 		clear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	// Fade out the form
+            	formFade(formpane);
+        		// Fade out the input fields
+        		textfieldFade(firstName);
+        		textfieldFade(lastName);
+        		textfieldFade(studentNumber);
+        		textfieldFade(email);
+        		textfieldFade(phoneNumber);
+        		textareaFade(interestsArea);
+        		textareaFade(whyJoinArea);
             	// TODO: swap in a different audio file unless team likes this one
             	Media media = new Media(new File("./audio/submitsound.wav").toURI().toString());
         		MediaPlayer soundplayer = new MediaPlayer(media);
         		soundplayer.play();
-        		
-        		
-        		
         		
         		firstName.setText("");
         		lastName.setText("");
@@ -229,6 +248,9 @@ public class Main extends Application {
         		list.getSelectionModel().clearSelection();
         		interestsArea.setText("");
         		whyJoinArea.setText("");
+        		
+        		
+        		
             }
         });
 		// clear.setOnMouseClicked(playSound());
@@ -266,15 +288,16 @@ public class Main extends Application {
 	 * 
 	 */
 	public static void textareaFade(TextArea textarea) {
-		FadeTransition ft = new FadeTransition(Duration.millis(3000), textarea);
+		FadeTransition ft = new FadeTransition(Duration.seconds(1), textarea);
 		ft.setFromValue(1.0);
-		ft.setToValue(0);
-		ft.setAutoReverse(false);
+		ft.setToValue(0.1);
+		ft.setAutoReverse(true);
+		ft.setCycleCount(2);
 		ft.play();
 	}
 	/**
 	 * 
-	 * Creates a FadeTransition and applies it to a TextField, the in playes
+	 * Creates a FadeTransition and applies it to a TextField, the in plays
 	 * the transition
 	 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
 	 * @version 1.0
@@ -282,11 +305,30 @@ public class Main extends Application {
 	 * 
 	 */
 	public static void textfieldFade(TextField textfield) {
-		FadeTransition ft = new FadeTransition(Duration.millis(3000), textfield);
+		FadeTransition ft = new FadeTransition(Duration.seconds(1), textfield);
 		ft.setFromValue(1.0);
-		ft.setToValue(0);
-		ft.setAutoReverse(false);
+		ft.setToValue(0.1);
+		ft.setAutoReverse(true);
+		ft.setCycleCount(2);
 		ft.play();
 	}
+	/**
+	 * 
+	 * Creates a FadeTransition and applies it to a BorderPane, the it plays
+	 * the transition
+	 * @author Nicholas Allaire <nicholas.allaire85@stclairconnect.ca>
+	 * @version 1.0
+	 * @param	BorderPane to apply the FadeTransition to
+	 * 
+	 */
+	public static void formFade(BorderPane form) {
+		FadeTransition ft = new FadeTransition(Duration.seconds(1), form);
+		ft.setFromValue(1.0);
+		ft.setToValue(0.1);
+		ft.setAutoReverse(true);
+		ft.setCycleCount(2);
+		ft.play();
+	}
+	
 	
 }
