@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -117,7 +118,7 @@ public class Main extends Application {
 		ListView<String> list = new ListView<>();
 		list.getItems().addAll("Less than 1 year", "1-2 years", "3-4 years", "5-6 years", "7+ years");
 		list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		list.setMaxSize(150, 150);
+		list.setMaxSize(200, 150);
 		VBox listBox = new VBox();
 		listBox.getChildren().addAll(listText, list);
 		/* END OF EXPERIENCE */
