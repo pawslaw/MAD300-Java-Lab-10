@@ -1,8 +1,9 @@
 .root{
     -fx-font-size: 14px;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Garamond";
     -fx-base: rgb(255, 255, 255);
     -fx-background: rgb(0, 191, 255);
+    
     
 }
 
@@ -10,3 +11,13 @@ HBox, VBox {
 	-fx-alignment: center;
 }
 
+ImageView {
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+	-fx-padding: 5px;
+	-fx-border-insets: 5px;
+	-fx-background-insets: 5px;
+}
+
+BorderPane {
+	-fx-font-size: 50px;
+}
