@@ -9,15 +9,10 @@
 
 HBox, VBox {
 	-fx-alignment: center;
+	
 }
 
-ImageView {
+ImageView{
 	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-	-fx-padding: 5px;
-	-fx-border-insets: 5px;
-	-fx-background-insets: 5px;
-}
-
-BorderPane {
-	-fx-font-size: 50px;
+	
 }

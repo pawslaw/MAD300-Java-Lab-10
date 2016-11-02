@@ -28,6 +28,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,6 +46,7 @@ public class Main extends Application {
 		BorderPane formpane = new BorderPane();
 		// Create a form title
 		Text title = new Text("Flying Club Form");
+		title.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		// Create a subtitle
 		Text subTitle = new Text("Join the Flying Club today!\n" + "Fill out the form below:");
 		// Create an VBox for the title
