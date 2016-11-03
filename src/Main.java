@@ -299,7 +299,7 @@ public class Main extends Application {
 
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
-		Text copyrightInfo = new Text("Copyright� 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
+		Text copyrightInfo = new Text("Copyright© 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
 		// Create a VBox to store the copyright and text info nodes
 		VBox footerBox = new VBox();
 		footerBox.getChildren().addAll(credits, copyrightInfo);
