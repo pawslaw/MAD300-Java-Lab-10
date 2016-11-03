@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -46,11 +47,14 @@ public class Main extends Application {
 		BorderPane formpane = new BorderPane();
 		// Create a form title
 		Text title = new Text("Flying Club Form");
-		title.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		title.setFont(Font.font("Garamond", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		// Create a subtitle
 		Text subTitle = new Text("Join the Flying Club today!\n" + "Fill out the form below:");
+		subTitle.setFont(Font.font("Garamond", FontWeight.NORMAL, FontPosture.REGULAR, 15));
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
+		titleBox.setPadding(new Insets(10, 10, 10, 0));
+
 		// Check if there is an image file, if so create it, if not then add something in as a default value
 		if (new File("./images/skydiving_gregpalmer_flickr.jpg").isFile()) {
 			ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
@@ -91,6 +95,8 @@ public class Main extends Application {
 		personalinfoRow2.getChildren().addAll(email, phoneNumber);
 		VBox personalinfoBox = new VBox();
 		personalinfoBox.getChildren().addAll(personalinfoText, personalinfoRow1, contactText, personalinfoRow2);
+		personalinfoRow1.setPadding(new Insets(10, 10, 10, 0));
+		personalinfoRow2.setPadding(new Insets(10, 10, 10, 0));
 		/* END OF PERSONAL INFORMATION */
 
 		/* YEAR OF ENROLLMENT BUTTON */
@@ -122,8 +128,9 @@ public class Main extends Application {
 		ListView<String> list = new ListView<>();
 		list.getItems().addAll("Less than 1 year", "1-2 years", "3-4 years", "5-6 years", "7+ years");
 		list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		list.setMaxSize(200, 150);
+		list.setMaxSize(200, 175);
 		VBox listBox = new VBox();
+		listBox.setPadding(new Insets(10, 10, 10, 0));
 		listBox.getChildren().addAll(listText, list);
 		/* END OF EXPERIENCE */
 
@@ -135,6 +142,7 @@ public class Main extends Application {
 		interestsArea.setEditable(true);
 		interestsArea.setWrapText(true);
 		VBox interestsBox = new VBox();
+		interestsBox.setPadding(new Insets(10, 10, 10, 0));
 		interestsBox.getChildren().addAll(interestsText, interestsArea);
 
 		// Create the Why Are you Joining form
@@ -144,6 +152,7 @@ public class Main extends Application {
 		whyJoinArea.setEditable(true);
 		whyJoinArea.setWrapText(true);
 		VBox whyJoinBox = new VBox();
+		whyJoinBox.setPadding(new Insets(10, 10, 10, 0));
 		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
 		/* END OF INTERESTS, HOBBIES, REASON */
 
@@ -151,6 +160,8 @@ public class Main extends Application {
 		Button clear = new Button("CLEAR");
 		Button submit = new Button("SUBMIT");
 		HBox submitBox = new HBox();
+		submitBox.setPadding(new Insets(10, 10, 10, 0));
+
 
 		/**
 		 * 
