@@ -45,6 +45,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Create the initial BorderPane
 		BorderPane formpane = new BorderPane();
+		formpane.setPadding(new Insets(10,10,10,10));
 		// Create a form title
 		Text title = new Text("Flying Club Form");
 		title.setFont(Font.font("Garamond", FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -54,7 +55,7 @@ public class Main extends Application {
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
 		titleBox.setPadding(new Insets(10, 10, 10, 0));
-
+		titleBox.setAlignment(Pos.CENTER);
 		// Check if there is an image file, if so create it, if not then add something in as a default value
 		if (new File("./images/skydiving_gregpalmer_flickr.jpg").isFile()) {
 			ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
@@ -96,7 +97,9 @@ public class Main extends Application {
 		VBox personalinfoBox = new VBox();
 		personalinfoBox.getChildren().addAll(personalinfoText, personalinfoRow1, contactText, personalinfoRow2);
 		personalinfoRow1.setPadding(new Insets(10, 10, 10, 0));
+		personalinfoRow1.setSpacing(20);
 		personalinfoRow2.setPadding(new Insets(10, 10, 10, 0));
+		personalinfoRow2.setSpacing(20);
 		/* END OF PERSONAL INFORMATION */
 
 		/* YEAR OF ENROLLMENT BUTTON */
@@ -108,8 +111,11 @@ public class Main extends Application {
 		ArrayList<RadioButton> buttons = new ArrayList<RadioButton>(4);
 		for (int i = 0; i < 3; i++) {
 			buttons.add(new RadioButton("Year " + (i + 1)));
+			buttons.get(i).setPadding(new Insets(10,10,10,10));
 		}
 		buttons.add(new RadioButton("Faculty"));
+		buttons.get(3).setPadding(new Insets(10,10,10,10));
+		
 		// Assign the buttons to the toggle group
 		// Create HBox to store the buttons
 		HBox buttonBox = new HBox();
@@ -117,6 +123,7 @@ public class Main extends Application {
 			buttons.get(i).setToggleGroup(radioButtonGroup);
 			buttonBox.getChildren().add(buttons.get(i));
 		}
+		
 		// Create a VBox to store the buttons and button heading
 		VBox studentYearBox = new VBox();
 		// Add the button group to the VBox
@@ -161,6 +168,8 @@ public class Main extends Application {
 		Button submit = new Button("SUBMIT");
 		HBox submitBox = new HBox();
 		submitBox.setPadding(new Insets(10, 10, 10, 0));
+		submitBox.setSpacing(25.0);
+		
 
 
 		/**
@@ -290,12 +299,13 @@ public class Main extends Application {
 		formpane.setCenter(formBox);
 		formpane.setBottom(footerBox);
 
-		Scene scene = new Scene(formpane, 800, 900);
+		Scene scene = new Scene(formpane, 800, 950);
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add("file:./stylesheets/styling.css");
 		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
