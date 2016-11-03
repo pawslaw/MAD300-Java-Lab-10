@@ -1,0 +1,16 @@
+.root{
+    -fx-font-size: 14px;
+    -fx-font-family: "Garamond";
+    -fx-base: rgb(255, 255, 255);
+    -fx-background: rgb(172, 198, 231);
+    
+    
+}
+
+
+
+ImageView{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+	
+}
+

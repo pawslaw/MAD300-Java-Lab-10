@@ -8,6 +8,9 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +29,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -39,12 +45,18 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Create the initial BorderPane
 		BorderPane formpane = new BorderPane();
+		formpane.setPadding(new Insets(10, 10, 10, 10));
 		// Create a form title
 		Text title = new Text("Flying Club Form");
+		title.setFont(Font.font("Garamond", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		// Create a subtitle
 		Text subTitle = new Text("Join the Flying Club today!\n" + "Fill out the form below:");
+		subTitle.setFont(Font.font("Garamond", FontWeight.NORMAL, FontPosture.REGULAR, 15));
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
+		titleBox.setPadding(new Insets(10, 10, 10, 0));
+		titleBox.setSpacing(10);
+		titleBox.setAlignment(Pos.CENTER);
 		// Check if there is an image file, if so create it, if not then add something in as a default value
 		if (new File("./images/skydiving_gregpalmer_flickr.jpg").isFile()) {
 			ImageView mainImage = new ImageView(new Image("file:./images/skydiving_gregpalmer_flickr.jpg"));
@@ -85,6 +97,10 @@ public class Main extends Application {
 		personalinfoRow2.getChildren().addAll(email, phoneNumber);
 		VBox personalinfoBox = new VBox();
 		personalinfoBox.getChildren().addAll(personalinfoText, personalinfoRow1, contactText, personalinfoRow2);
+		personalinfoRow1.setPadding(new Insets(10, 10, 10, 0));
+		personalinfoRow1.setSpacing(20);
+		personalinfoRow2.setPadding(new Insets(10, 10, 10, 0));
+		personalinfoRow2.setSpacing(20);
 		/* END OF PERSONAL INFORMATION */
 
 		/* YEAR OF ENROLLMENT BUTTON */
@@ -96,8 +112,11 @@ public class Main extends Application {
 		ArrayList<RadioButton> buttons = new ArrayList<RadioButton>(4);
 		for (int i = 0; i < 3; i++) {
 			buttons.add(new RadioButton("Year " + (i + 1)));
+			buttons.get(i).setPadding(new Insets(10,10,10,10));
 		}
 		buttons.add(new RadioButton("Faculty"));
+		buttons.get(3).setPadding(new Insets(10,10,10,10));
+		
 		// Assign the buttons to the toggle group
 		// Create HBox to store the buttons
 		HBox buttonBox = new HBox();
@@ -105,6 +124,7 @@ public class Main extends Application {
 			buttons.get(i).setToggleGroup(radioButtonGroup);
 			buttonBox.getChildren().add(buttons.get(i));
 		}
+		
 		// Create a VBox to store the buttons and button heading
 		VBox studentYearBox = new VBox();
 		// Add the button group to the VBox
@@ -113,12 +133,18 @@ public class Main extends Application {
 
 		/* EXPERIENCE SECTION */
 		Text listText = new Text("Select your amount of flying experience:");
+	
 		ListView<String> list = new ListView<>();
 		list.getItems().addAll("Less than 1 year", "1-2 years", "3-4 years", "5-6 years", "7+ years");
 		list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		list.setMaxSize(150, 150);
+		list.setMaxSize(200, 175);
 		VBox listBox = new VBox();
+		listBox.setPadding(new Insets(10, 10, 10, 0));
 		listBox.getChildren().addAll(listText, list);
+		listBox.setSpacing(10.0);
+		
+		
+		
 		/* END OF EXPERIENCE */
 
 		/* INTERESTS, HOBBIES, AND REASON TO JOIN */
@@ -129,7 +155,9 @@ public class Main extends Application {
 		interestsArea.setEditable(true);
 		interestsArea.setWrapText(true);
 		VBox interestsBox = new VBox();
+		interestsBox.setPadding(new Insets(10, 10, 10, 0));
 		interestsBox.getChildren().addAll(interestsText, interestsArea);
+		interestsBox.setSpacing(10.0);
 
 		// Create the Why Are you Joining form
 		Text whyJoinText = new Text("Tell us why you would like to join the Flying Club:");
@@ -138,13 +166,20 @@ public class Main extends Application {
 		whyJoinArea.setEditable(true);
 		whyJoinArea.setWrapText(true);
 		VBox whyJoinBox = new VBox();
+		whyJoinBox.setPadding(new Insets(10, 10, 10, 0));
 		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
+		whyJoinBox.setSpacing(10.0);
+
 		/* END OF INTERESTS, HOBBIES, REASON */
 
 		/* CLEAR AND SUBMIT BUTTONS */
 		Button clear = new Button("CLEAR");
 		Button submit = new Button("SUBMIT");
 		HBox submitBox = new HBox();
+		submitBox.setPadding(new Insets(10, 10, 10, 0));
+		submitBox.setSpacing(25.0);
+		
+
 
 		/**
 		 * 
@@ -264,7 +299,7 @@ public class Main extends Application {
 
 		// Create credits and copyright info text nodes
 		Text credits = new Text("Form created by Brandon Brown, Tyler Mackenzie, and Nicholas Allaire");
-		Text copyrightInfo = new Text("Copyright� 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
+		Text copyrightInfo = new Text("Copyright© 2016 - Brandon Brown, Tyler Mackenzie, Nicholas Allaire");
 		// Create a VBox to store the copyright and text info nodes
 		VBox footerBox = new VBox();
 		footerBox.getChildren().addAll(credits, copyrightInfo);
@@ -273,8 +308,13 @@ public class Main extends Application {
 		formpane.setCenter(formBox);
 		formpane.setBottom(footerBox);
 
+		Scene scene = new Scene(formpane, 800, 950);
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add("file:./stylesheets/styling.css");
+		
 		primaryStage.setTitle("[MAD300 Java Lab 10]");
-		primaryStage.setScene(new Scene(formpane, 800, 900));
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
