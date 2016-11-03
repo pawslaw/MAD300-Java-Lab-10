@@ -45,7 +45,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Create the initial BorderPane
 		BorderPane formpane = new BorderPane();
-		formpane.setPadding(new Insets(10,10,10,10));
+		formpane.setPadding(new Insets(10, 10, 10, 10));
 		// Create a form title
 		Text title = new Text("Flying Club Form");
 		title.setFont(Font.font("Garamond", FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -55,6 +55,7 @@ public class Main extends Application {
 		// Create an VBox for the title
 		VBox titleBox = new VBox();
 		titleBox.setPadding(new Insets(10, 10, 10, 0));
+		titleBox.setSpacing(10);
 		titleBox.setAlignment(Pos.CENTER);
 		// Check if there is an image file, if so create it, if not then add something in as a default value
 		if (new File("./images/skydiving_gregpalmer_flickr.jpg").isFile()) {
@@ -132,6 +133,7 @@ public class Main extends Application {
 
 		/* EXPERIENCE SECTION */
 		Text listText = new Text("Select your amount of flying experience:");
+	
 		ListView<String> list = new ListView<>();
 		list.getItems().addAll("Less than 1 year", "1-2 years", "3-4 years", "5-6 years", "7+ years");
 		list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -139,6 +141,10 @@ public class Main extends Application {
 		VBox listBox = new VBox();
 		listBox.setPadding(new Insets(10, 10, 10, 0));
 		listBox.getChildren().addAll(listText, list);
+		listBox.setSpacing(10.0);
+		
+		
+		
 		/* END OF EXPERIENCE */
 
 		/* INTERESTS, HOBBIES, AND REASON TO JOIN */
@@ -151,6 +157,7 @@ public class Main extends Application {
 		VBox interestsBox = new VBox();
 		interestsBox.setPadding(new Insets(10, 10, 10, 0));
 		interestsBox.getChildren().addAll(interestsText, interestsArea);
+		interestsBox.setSpacing(10.0);
 
 		// Create the Why Are you Joining form
 		Text whyJoinText = new Text("Tell us why you would like to join the Flying Club:");
@@ -161,6 +168,8 @@ public class Main extends Application {
 		VBox whyJoinBox = new VBox();
 		whyJoinBox.setPadding(new Insets(10, 10, 10, 0));
 		whyJoinBox.getChildren().addAll(whyJoinText, whyJoinArea);
+		whyJoinBox.setSpacing(10.0);
+
 		/* END OF INTERESTS, HOBBIES, REASON */
 
 		/* CLEAR AND SUBMIT BUTTONS */
